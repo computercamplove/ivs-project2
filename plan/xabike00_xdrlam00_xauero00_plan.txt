@@ -1,0 +1,58 @@
+IVS - Projekt 2 - Tým ivs21
+
+Členové týmu:
+    xabike00 - Abikenova Zhamilya
+    xdrlam00 - Michal Drla
+    xauero00 - Pavlína Auerová
+
+Termíny stanovené týmem:
+    Začátek práce na projektu (git, plan): 16.03.21 - 18.03.21
+    Návrh aplikace:                        19.03.21 - 26.03.21
+    Implementace projektu:                 27.03.21 - 18.04.21
+    Další testování, tvorba dokumentace:   19.04.21 - 25.04.21
+    Závěrečné úpravy:                      26.04.21 - 28.04.21
+    Odevzdání projektů:                    29.04.2021
+    Instalace:                             21.05.2021
+    Obhajoba projektů:                     od 24.05.21
+
+Rozdělení úloh:
+    Matematická knihovna -  Michal Drla (xdrlam00):
+    Implementace knihovny základních matematických operací (+,-,/,*) a následné vytvoření rozšíření pro tuto knihovnu, ve které budou další povinné matematické operace (faktoriál, umocňování přirozenými exponenty, obecná odmocnina a jedna volitelná funkce(logaritmus))
+    
+    Tvorba pomocných funkcí pro matematickou knihovnu - Pavlína Auerová (xauero00):
+    Tvorba pomocných funkcí, které jsou nutné pro funkčnost kalkulačky (priorita závorek apod.).
+    
+    GUI - Abikenova Zhamilya (xabike00):
+    Vytvoření základního návrhu uživatelského rozhraní, který bude následně implementován, součástí této implementace je také napojení logiky na uživatelské rozhraní.
+    
+    Instalátor - Abikenova Zhamilya (xabike00):
+    Tvorba instalátoru, který usnadní nasazení aplikace na uživatelském zařízení.
+    
+    Testovaní - Michal Drla (xdrlam00):
+    Tvorba testů, které budou předcházet implementaci matematické knihovny dle TDD.
+    
+    Profilling - Pavlína Auerová (xauero00)
+    Implementace programu, který vypočítá směrodatnou odchylku s pomocí funkcí z matematické knihovny a vytvoření protokolu o částech kódu, které jsou pomalé a jejich návrh na zlepšení.
+    
+    Dokumentace - Pavlína Auerová (xauero00)
+    Tvorba uživatelské dokumentace a manuálu na ruční (od)instalaci programu. Tento bod dále zahrnuje tvorbu nápovědy pro uživatele.
+    
+    Makefile - Pavlína Auerová (xauero00)
+    Tvorba Makefilu, který slouží pro překlad a spuštění jednotlivých částí programu.
+    
+    Kontrola dodržování stanovených datumů - Abikenova Zhamilya (xabike00):
+    Kontrola zda implementace projektu probíhá v řádných termínech a jejich případné drobné úpravy.
+    
+    Tvorba prezentace  - Pavlína Auerová (xauero00):
+    Tvorba prezentace pro finální obhajobu.
+    
+    Vedoucí týmu - Abikenova Zhamilya (xabike00):
+    Vedoucí týmu má na starosti správu verzovacího systému, kontrolu funkčnosti a odevzdávání výsledků (případně komunikaci s vyučujícími).
+
+Komunikační kanály:
+    Discord - Discord je platforma, která slouží k rychlé komunikaci mezi členy týmu. Umožňuje jak posílání rychlých zpráv sdílení souborů, videí i živé hovory, ve kterých je možné sdílet obrazovku, při řešení složitého problému. Díky tomu je to ideální nástroj pro komunikaci především v době, kdy není možné se sejít osobně.
+
+Systém pro správu verzí:
+    Github:
+        Uživateli ivskontrola s emailem ivs.kontrola@gmail.com byl poskytnut přístup k níže uvedenému repozitáři:
+        Repozitář: https://github.com/computercamplove/ivs-project2

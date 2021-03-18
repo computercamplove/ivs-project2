@@ -31,7 +31,7 @@ Rozdělení úloh:
     Testovaní - Michal Drla (xdrlam00):
     Tvorba testů, které budou předcházet implementaci matematické knihovny dle TDD.
     
-    Profilling - Pavlína Auerová (xauero00)
+    Profiling - Pavlína Auerová (xauero00)
     Implementace programu, který vypočítá směrodatnou odchylku s pomocí funkcí z matematické knihovny a vytvoření protokolu o částech kódu, které jsou pomalé a jejich návrh na zlepšení.
     
     Dokumentace - Pavlína Auerová (xauero00)

@@ -1,9 +1,9 @@
-Prostredi
+Prostředí
 ---------
 
 Ubuntu 64bit
 
-Autori
+Autoři
 ------
 
 ivs21
@@ -14,4 +14,4 @@ ivs21
 Licence
 -------
 
-Tento program je poskytovan GNU General Public License v3.0
+Tento program je poskytován GNU General Public License v3.0

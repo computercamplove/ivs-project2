@@ -22,23 +22,30 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
         self.btn_dot.clicked.connect(self.decimal_pressed)
         self.btn_plusminus.clicked.connect(self.unary_operator_pressed)
+
         self.btn_clear.clicked.connect(self.clear_pressed)
         self.btn_delete.clicked.connect(self.delete_pressed)
-
         self.btn_left_b.clicked.connect(self.bracket_pressed)
         self.btn_right_b.clicked.connect(self.bracket_pressed)
 
+
+    def number_pressed(self):
+        btn = self.sender()
+        label_num_str = self.display.text()
+        result_label = ''
+
+        if '.' not in label_num_str:
+            result_label = format(float(self.display.text() + btn.text()), '.15g')
+        else: #if 0 after "."
+            result_label = self.display.text() + btn.text()
+
+        self.display.setText(result_label)
+    
     def decimal_pressed(self):
         if '.' in self.display.text():
             pass
         else:
             self.display.setText(self.display.text() + '.')
-
-    def number_pressed(self):
-        btn = self.sender()
-        result_label = format(float(self.display.text() + btn.text()), '.15g')
-
-        self.display.setText(result_label)
 
     def unary_operator_pressed(self):
         label_number = float(self.display.text())
@@ -59,8 +66,11 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
             result_label = label_number_str[:-1]
             self.display.setText(result_label)
 
-    #TO-DO to finish after arithmetic methods
     def bracket_pressed(self):
+
+        # TODO: add more functionality after creating
+        #   slot for binary operators
+        
         btn = self.sender()
         label_number_str = self.display.text()
 

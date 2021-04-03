@@ -5,11 +5,8 @@ import matlib
 
 
 class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
-    first_number = None
-    typing = False  # to check if second number still typing
-    equal = False
-    functions = ['!', '\u221a']
-
+    functions = ['!', '^']
+    operators = ['+', '-', '*', '/']
 
     def __init__(self):
         super().__init__()
@@ -104,9 +101,6 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
         self.display.setText(lcd_result)
 
-    def equal_pressed(self):
-        pass
-
     def delete_pressed(self):
         lcd_str = self.display.text()
 
@@ -180,12 +174,51 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         lcd_result = lcd_str + ')'
         self.display.setText(lcd_result)
 
+    def equal_pressed(self):
+        lcd_str = self.display.text()
+        result_num = 0
+        counter = -1
+
+        if lcd_str[-1] in self.operators:
+            raise ValueError("Expression ends with operator")
+
+        for c in range(len(lcd_str)):
+            if counter == c:
+                continue
+            if (lcd_str[c] in self.operators) or (lcd_str[c] in self.functions):
+                if lcd_str[c] != '!':
+                    second_num = int(lcd_str[c + 1])
+                else:
+                    pass
+
+                if lcd_str[c] == '+':
+                    result_num = matlib.add(result_num, second_num)
+                    counter = c + 1
+                elif lcd_str[c] == '-':
+                    result_num = matlib.sub(result_num, second_num)
+                    counter = c + 1
+                elif lcd_str[c] == '*':
+                    result_num = matlib.mul(result_num, second_num)
+                    counter = c + 1
+                elif lcd_str[c] == '/':
+                    result_num = matlib.div(result_num, second_num)
+                    counter = c + 1
+                elif lcd_str[c] == '!':
+                    result_num = matlib.factorial(result_num)
+                    counter = c + 1
+                elif lcd_str[c] == '^':
+                    result_num = matlib.pow(result_num, second_num)
+                    counter = c + 1
+            else:
+                result_num = int(lcd_str[c])
+
+        lcd_result = format(result_num, '.15g')
+        self.display.setText(lcd_result)
 
 
     def operator_control(self, operator):
         #  function controls if last charackter in string is operator
-        operators = ['+', '-', '*', '/']
-        for char in operators:
+        for char in self.operators:
             if operator == char:
                 return True
 

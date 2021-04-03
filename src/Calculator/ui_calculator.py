@@ -204,7 +204,7 @@ class Ui_Calculator(object):
         self.btn7.setText(_translate("MainWindow", "7"))
         self.btn_fact.setText(_translate("MainWindow", "x!"))
         self.btn8.setText(_translate("MainWindow", "8"))
-        self.btn_sqrt.setText(_translate("MainWindow", "sqrt"))
+        self.btn_sqrt.setText(_translate("MainWindow", '\u221ax'))
         self.btn9.setText(_translate("MainWindow", "9"))
         self.btn_exp.setText(_translate("MainWindow", "e"))
         self.btn_plus.setText(_translate("MainWindow", "+"))

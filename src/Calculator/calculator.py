@@ -135,8 +135,12 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         lcd_str = self.display.text()
         if lcd_str[0] == '0' and len(lcd_str) == 1:
             lcd_str = ''
+            lcd_result = lcd_str + 'log('
+        elif self.operator_control(lcd_str[-1]):
+            lcd_result = lcd_str + 'log('
+        else:
+            lcd_result = lcd_str
 
-        lcd_result = lcd_str + 'log('
         self.display.setText(lcd_result)
 
     def power_pressed(self):
@@ -151,10 +155,10 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
     def sqrt_pressed(self):
         lcd_str = self.display.text()
 
-        if lcd_str[0] == '0' and len(lcd_str) == 1:
-            lcd_result = '\u221a'
-        elif lcd_str[-1] != '\u221a':
+        if self.operator_control(lcd_str[-1]):
             lcd_result = lcd_str + '\u221a'
+        elif lcd_str[0] == '0' and len(lcd_str) == 1:
+            lcd_result = '\u221a'
         else:
             lcd_result = lcd_str
 
@@ -178,6 +182,13 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         lcd_str = self.display.text()
         result_num = 0
         counter = -1
+
+        # TODO: [1] Add functionality for log() and nroot()
+        #       [2] Change number's property - number could
+        #           have more than 1 digit or could be decimal
+        #       [3] Add priority for operators while evaluating
+        #       [4] Add priority for brackets while evaluating
+        #       [5] Add functionality for Errors
 
         if lcd_str[-1] in self.operators:
             raise ValueError("Expression ends with operator")

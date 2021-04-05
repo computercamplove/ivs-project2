@@ -69,6 +69,8 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
             self.left_bracket_pressed()
         elif event.key() == Qt.Key_ParenRight:
             self.right_bracket_pressed()
+        else:
+            pass
 
     def number_pressed(self, key = None):
         btn = self.sender()
@@ -83,7 +85,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
             lcd_str = ''
             lcd_result = lcd_str + btn_text
             self.display.setText(lcd_result)
-        elif lcd_str[-1] == '!':
+        elif lcd_str[-1] == '!' or not self.lcd_string(lcd_str):
             lcd_result = lcd_str
             self.display.setText(lcd_result)
         else:
@@ -94,7 +96,8 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def decimal_pressed(self):
         lcd_str = self.display.text()
-        if lcd_str[-1] == '.' or self.operator_control(lcd_str[-1]) or lcd_str[-1] in self.functions:
+        if lcd_str[-1] == '.' or self.operator_control(lcd_str[-1]) or \
+                lcd_str[-1] in self.functions or not self.lcd_string(lcd_str):
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + '.'
@@ -103,7 +106,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def plus_pressed(self):
         lcd_str = self.display.text()
-        if not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.':
+        if not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.' and self.lcd_string(lcd_str):
             lcd_result = lcd_str + '+'
         else:
             lcd_result = lcd_str
@@ -115,7 +118,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if len(lcd_str) == 1 and lcd_str == '0':
             lcd_str = ''
             lcd_result = lcd_str + '-'
-        elif not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.':
+        elif not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.' and self.lcd_string(lcd_str):
             lcd_result = lcd_str + '-'
 
         else:
@@ -125,7 +128,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def mult_pressed(self):
         lcd_str = self.display.text()
-        if not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.':
+        if not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.' and self.lcd_string(lcd_str):
             lcd_result = lcd_str + '*'
         else:
             lcd_result = lcd_str
@@ -134,7 +137,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def div_pressed(self):
         lcd_str = self.display.text()
-        if not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.':
+        if not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.' and self.lcd_string(lcd_str):
             lcd_result = lcd_str + '/'
         else:
             lcd_result = lcd_str
@@ -165,7 +168,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def fact_pressed(self):
         lcd_str = self.display.text()
-        if lcd_str[-1] != '.' and lcd_str[-1] != '^':
+        if lcd_str[-1] != '.' and lcd_str[-1] != '^' and self.lcd_string(lcd_str):
             lcd_result = lcd_str + '!'
         else:
             lcd_result = lcd_str
@@ -177,7 +180,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if lcd_str[0] == '0' and len(lcd_str) == 1:
             lcd_str = ''
             lcd_result = lcd_str + 'log('
-        elif self.operator_control(lcd_str[-1]):
+        elif self.operator_control(lcd_str[-1]) and self.lcd_string(lcd_str):
             lcd_result = lcd_str + 'log('
         else:
             lcd_result = lcd_str
@@ -186,7 +189,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def power_pressed(self):
         lcd_str = self.display.text()
-        if lcd_str[-1] != '^' and lcd_str[-1] != '.':
+        if lcd_str[-1] != '^' and lcd_str[-1] != '.' and self.lcd_string(lcd_str):
             lcd_result = lcd_str + '^'
         else:
             lcd_result = lcd_str
@@ -196,7 +199,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
     def sqrt_pressed(self):
         lcd_str = self.display.text()
 
-        if self.operator_control(lcd_str[-1]):
+        if self.operator_control(lcd_str[-1]) and self.lcd_string(lcd_str):
             lcd_result = lcd_str + '\u221a'
         elif lcd_str[0] == '0' and len(lcd_str) == 1:
             lcd_result = '\u221a'
@@ -209,7 +212,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         lcd_str = self.display.text()
         if lcd_str[0] == '0' and len(lcd_str) == 1:
             lcd_result = '('
-        elif self.operator_control(lcd_str[-1]):
+        elif self.operator_control(lcd_str[-1]) and self.lcd_string(lcd_str):
             lcd_result = lcd_str + '('
         else:
             lcd_result = lcd_str
@@ -286,3 +289,11 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         for char in self.operators:
             if operator == char:
                 return True
+
+    def lcd_string(self, string):
+        if len(string) < 27:
+            return True
+        else:
+            return False
+
+

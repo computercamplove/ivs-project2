@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets
+from PyQt5.Qt import Qt
 from ui_calculator import Ui_Calculator
 import re
 import matlib
@@ -43,18 +44,50 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         self.btn_exp.pressed.connect(self.power_pressed)
         self.btn_sqrt.pressed.connect(self.sqrt_pressed)
 
-    def number_pressed(self):
+    def keyPressEvent(self, event):
+        if event.key() == Qt.Key_0 or event.key() == Qt.Key_1 or \
+                event.key() == Qt.Key_2 or event.key() == Qt.Key_3 or \
+                event.key() == Qt.Key_4 or event.key() == Qt.Key_5 or \
+                event.key() == Qt.Key_6 or event.key() == Qt.Key_7 or \
+                event.key() == Qt.Key_8 or event.key() == Qt.Key_9:
+            self.number_pressed(event.text())
+        elif event.key() == Qt.Key_Backspace:
+            self.delete_pressed()
+        elif event.key() == Qt.Key_Plus:
+            self.plus_pressed()
+        elif event.key() == Qt.Key_Minus:
+            self.minus_pressed()
+        elif event.key() == Qt.Key_Asterisk:
+            self.mult_pressed()
+        elif event.key() == Qt.Key_Slash:
+            self.div_pressed()
+        elif event.key() == Qt.Key_Enter or event.key() == Qt.Key_Return:
+            self.equal_pressed()
+        elif event.key() == Qt.Key_Period or event.key() == Qt.Key_Comma:
+            self.decimal_pressed()
+        elif event.key() == Qt.Key_ParenLeft:
+            self.left_bracket_pressed()
+        elif event.key() == Qt.Key_ParenRight:
+            self.right_bracket_pressed()
+
+    def number_pressed(self, key = None):
         btn = self.sender()
         lcd_str = self.display.text()
-        if (lcd_str[0] == '0' and len(lcd_str) == 1 and btn.text() != '.') or (self.typing == False and not self.operator_control(lcd_str[-1])):
+
+        if key is not None:
+            btn_text = key
+        else:
+            btn_text = btn.text()
+
+        if (lcd_str[0] == '0' and len(lcd_str) == 1 and btn_text != '.') or (self.typing == False and not self.operator_control(lcd_str[-1])):
             lcd_str = ''
-            lcd_result = lcd_str + btn.text()
+            lcd_result = lcd_str + btn_text
             self.display.setText(lcd_result)
         elif lcd_str[-1] == '!':
             lcd_result = lcd_str
             self.display.setText(lcd_result)
         else:
-            lcd_result = lcd_str + btn.text()
+            lcd_result = lcd_str + btn_text
             self.display.setText(lcd_result)
 
         self.typing = True
@@ -70,7 +103,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def plus_pressed(self):
         lcd_str = self.display.text()
-        if not self.operator_control(lcd_str[-1]):
+        if not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.':
             lcd_result = lcd_str + '+'
         else:
             lcd_result = lcd_str
@@ -82,7 +115,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if len(lcd_str) == 1 and lcd_str == '0':
             lcd_str = ''
             lcd_result = lcd_str + '-'
-        elif not self.operator_control(lcd_str[-1]):
+        elif not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.':
             lcd_result = lcd_str + '-'
 
         else:
@@ -92,7 +125,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def mult_pressed(self):
         lcd_str = self.display.text()
-        if not self.operator_control(lcd_str[-1]):
+        if not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.':
             lcd_result = lcd_str + '*'
         else:
             lcd_result = lcd_str
@@ -101,7 +134,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def div_pressed(self):
         lcd_str = self.display.text()
-        if not self.operator_control(lcd_str[-1]):
+        if not self.operator_control(lcd_str[-1]) and lcd_str[-1] != '.':
             lcd_result = lcd_str + '/'
         else:
             lcd_result = lcd_str
@@ -132,7 +165,11 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def fact_pressed(self):
         lcd_str = self.display.text()
-        lcd_result = lcd_str + '!'
+        if lcd_str[-1] != '.' and lcd_str[-1] != '^':
+            lcd_result = lcd_str + '!'
+        else:
+            lcd_result = lcd_str
+
         self.display.setText(lcd_result)
 
     def log_pressed(self):
@@ -149,7 +186,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def power_pressed(self):
         lcd_str = self.display.text()
-        if lcd_str[-1] != '^':
+        if lcd_str[-1] != '^' and lcd_str[-1] != '.':
             lcd_result = lcd_str + '^'
         else:
             lcd_result = lcd_str
@@ -189,10 +226,11 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         second_num = ''
 
         # TODO: [1] Add functionality for log() and nroot()
-        #       [2] Done
+        #       [2] Done /Numbers
         #       [3] Add priority for operators while evaluating
         #       [4] Add priority for brackets while evaluating
         #       [5] Add functionality for Errors
+        #       [6] Done / Connect to keyboard
 
         if lcd_str[-1] in self.operators:
             raise ValueError("Expression ends with operator")

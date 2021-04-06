@@ -208,4 +208,4 @@ class Ui_Calculator(object):
         self.btn9.setText(_translate("MainWindow", "9"))
         self.btn_exp.setText(_translate("MainWindow", "e"))
         self.btn_plus.setText(_translate("MainWindow", "+"))
-        self.display.setText(_translate("MainWindow", "0"))
+        self.display.setText(_translate("MainWindow", ""))

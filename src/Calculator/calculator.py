@@ -291,7 +291,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
             lcd_result = ''
         else:
             try:
-                lcd_result = str(matlib.parse_expression(lcd_str))
+                lcd_result = format(matlib.parse_expression(lcd_str), '.15g')
             except ValueError as error:
                 lcd_result = str(error)
 

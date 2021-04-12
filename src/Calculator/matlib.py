@@ -220,7 +220,9 @@ def syntax(expression):
             if len(expression) == 1 and expression[n] in "+-*/!^)(√":
                 # one character in expression is operator
                 return False
-            elif expression[n] in "+-*/^√." and expression[n + 1] in "+*/!^.":
+             elif expression[n] in "√" and expression[n + 1] in "√+*/!^.()":
+                return False
+            elif expression[n] in "+-*/^." and expression[n + 1] in "+*/!^.)":
                 # operators in expression one by one
                 return False
             elif expression[n] in "()":

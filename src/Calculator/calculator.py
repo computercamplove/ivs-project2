@@ -89,7 +89,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         else:
             btn_text = btn.text()
 
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -101,7 +103,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends the period to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -113,7 +117,10 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends the plus '+' character to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -125,7 +132,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends the minus '-' character to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -137,7 +146,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends the asterisk '*' character to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -149,7 +160,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends the slash '/' character to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -161,8 +174,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Delete last character from the display."""
 
         lcd_str = self.display.text()
-
-        if len(lcd_str) == 1 or lcd_str == '0':
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif len(lcd_str) == 1 or lcd_str == '0':
             self.clear_pressed()
         else:
             lcd_result = lcd_str[:-1]
@@ -176,6 +190,8 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
     def unary_operator_pressed(self):
         """Negates one number on the display."""
         lcd_str = self.display.text()
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
         try:
             lcd_digit = float(lcd_str)
             lcd_digit *= -1
@@ -187,7 +203,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends the exclamation mark '!' to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -199,7 +217,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends beginning of function 'log(' to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -211,7 +231,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends caret '^' character to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -223,7 +245,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends square root character to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -235,7 +259,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends left parenthesis to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -247,7 +273,9 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Appends right parenthesis to the display."""
 
         lcd_str = self.display.text()
-        if not self.lcd_string(lcd_str):
+        if self.error_lcd(lcd_str):
+            lcd_result = ''
+        elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
@@ -259,57 +287,31 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         """Sends string expression to parser in matlib to evaluate input from display."""
 
         lcd_str = self.display.text()
-        lcd_result = format(matlib.parse_expression(lcd_str), '.15g')
+        if lcd_str == '' or self.error_lcd(lcd_str):
+            lcd_result = ''
+        else:
+            try:
+                lcd_result = str(matlib.parse_expression(lcd_str))
+            except ValueError as error:
+                lcd_result = str(error)
+
         self.display.setText(lcd_result)
 
     def lcd_string(self, string):
-        if len(string) < 27:
+        """Checks right amount of characters on display."""
+
+        if len(string) < 50:
             return True
         else:
             return False
 
-    #  parser without operator priotiy and parenthesis
-    """
-                    if lcd_str[-1] in self.operators:
-                raise ValueError("Expression ends with operator")
-
-            print(lcd_str)
-            number_arr = re.findall(r'[-]?\d*\.?\d+|[-+]?\d+', lcd_str)
-            print(number_arr)
-            result_num = re.findall(r'[-]?\d*\.?\d+|[-+]?\d+', lcd_str)[0]
-            counter_neg = 0  # variable to check if first number is negative
-            for c in range(len(lcd_str)):
-                # cycle finds operator between first number and second number
-                if float(result_num) < 0 and counter_neg == 0:
-                    #  when first number is negative cycle ignor first operator to next in
-                    c += 1
-                    counter_neg += 1
-                else:
-                    if (lcd_str[c] in self.operators) or (lcd_str[c] in self.functions):
-                        if lcd_str[c] != '!':
-                            new_str = lcd_str[c + 1:]
-                            second_num = re.findall(r'[-+]?\d*\.\d+|\d+', new_str)[0]
-                            print("Here First argument " + result_num)
-                            print("Here Second argument  " + second_num)
-                        else:
-                            pass
-
-                        if lcd_str[c] == '+':
-                            result_num = format(matlib.add(float(result_num), float(second_num)), '.15g')
-                            print(result_num)
-                        elif lcd_str[c] == '-':
-                            result_num = format(matlib.sub(float(result_num), float(second_num)), '.15g')
-                        elif lcd_str[c] == '*':
-                            result_num = format(matlib.mul(float(result_num), float(second_num)), '.15g')
-                        elif lcd_str[c] == '/':
-                            result_num = format(matlib.div(float(result_num), float(second_num)), '.15g')
-                        elif lcd_str[c] == '!':
-                            result_num = format(matlib.factorial(float(result_num)), '.15g')
-                        elif lcd_str[c] == '^':
-                            result_num = format(matlib.pow(float(result_num), float(second_num)), '.15g')
-                    else:
-                        pass
-
-            if result_num == '-0':
-                result_num = '0'
-            """
+    def error_lcd(self, string):
+        """Checks display for Error message."""
+        
+        if string == "Hodnotou 0 nelze delit" or \
+                string == "Hodnota nemuze byt vetsi nez 899" or \
+                string == "Hodnota nemuze byt mene nez 0" or \
+                string == "Syntax Error in Expression":
+            return True
+        else:
+            return False

@@ -222,7 +222,7 @@ class Ui_Calculator(object):
         self.display = QtWidgets.QLabel(self.centralwidget)
         self.display.setGeometry(QtCore.QRect(8, 10, 303, 65))
         font = QtGui.QFont()
-        font.setPointSize(18)
+        font.setPointSize(14)
         self.display.setFont(font)
         self.display.setStyleSheet("QLabel {\n"
                                    "    qproperty-alignment:\'AlignVCenter | AlignRight\';\n"

@@ -7,6 +7,8 @@ import matlib
 class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
     """Class used to connect GUI and matlib."""
 
+    answer = ''
+
     def __init__(self):
         """Initializes the calculator."""
 
@@ -37,7 +39,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         self.btn_left_b.pressed.connect(self.left_bracket_pressed)
         self.btn_right_b.pressed.connect(self.right_bracket_pressed)
 
-        self.btn_plusminus.pressed.connect(self.unary_operator_pressed)
+        self.btn_answer.pressed.connect(self.ans_pressed)
         self.btn_fact.pressed.connect(self.fact_pressed)
         self.btn_log.pressed.connect(self.log_pressed)
         self.btn_exp.pressed.connect(self.power_pressed)
@@ -92,7 +94,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = btn_text
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + btn_text
@@ -106,7 +108,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = '.'
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + '.'
@@ -121,7 +123,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = '+'
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + '+'
@@ -135,7 +137,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = '-'
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + '-'
@@ -149,7 +151,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = '*'
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + '*'
@@ -163,7 +165,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = '/'
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + '/'
@@ -185,17 +187,16 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
         self.display.setText('')
 
-    def unary_operator_pressed(self):
-        """Negates one number on the display."""
+    def ans_pressed(self):
+        """Appends previous answer on the display."""
         lcd_str = self.display.text()
-        if self.error_lcd(lcd_str):
+        if not self.lcd_string(lcd_str):
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
-        try:
-            lcd_digit = float(lcd_str)
-            lcd_digit *= -1
-            self.display.setText(format(lcd_digit, '.15g'))
-        except ValueError:
-            pass
+        else:
+            lcd_result = lcd_str + self.answer
+
+        self.display.setText(lcd_result)
 
     def fact_pressed(self):
         """Appends the exclamation mark '!' to the display."""
@@ -204,7 +205,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = '!'
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + '!'
@@ -218,7 +219,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = 'log('
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + "log("
@@ -232,7 +233,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = '^'
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + '^'
@@ -246,7 +247,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = '\u221a('
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + '\u221a('
@@ -260,7 +261,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = '('
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + '('
@@ -274,7 +275,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         if self.error_lcd(lcd_str):
             lcd_result = ')'
         elif not self.lcd_string(lcd_str):
-            #  display already contain 27 characters and returns previous input
+            #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
         else:
             lcd_result = lcd_str + ')'
@@ -290,15 +291,17 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         else:
             try:
                 lcd_result = format(matlib.parse_expression(lcd_str), '.15g')
+                self.answer = lcd_result
             except ValueError as error:
                 lcd_result = str(error)
 
         self.display.setText(lcd_result)
 
+
     def lcd_string(self, string):
         """Checks right amount of characters on display."""
 
-        if len(string) < 50:
+        if len(string) < 45:
             return True
         else:
             return False

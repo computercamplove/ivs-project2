@@ -244,12 +244,12 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
         lcd_str = self.display.text()
         if self.error_lcd(lcd_str):
-            lcd_result = '\u221a'
+            lcd_result = '\u221a('
         elif not self.lcd_string(lcd_str):
             #  display already contain 27 characters and returns previous input
             lcd_result = lcd_str
         else:
-            lcd_result = lcd_str + '\u221a'
+            lcd_result = lcd_str + '\u221a('
 
         self.display.setText(lcd_result)
 

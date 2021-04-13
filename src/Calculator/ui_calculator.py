@@ -6,6 +6,7 @@ class Ui_Calculator(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(319, 399)
+        MainWindow.setFixedSize(319, 399)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.centralwidget.setStyleSheet("background-color: rgb(52, 52, 52);")

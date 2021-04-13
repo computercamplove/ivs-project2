@@ -61,7 +61,9 @@ def parse_expression(expression):
         raise ValueError("Syntax Error in Expression")
 
     expression = convert_unary_func(expression)
+    print(expression)
     exp_postfix = postfix(expression)
+    print(exp_postfix)
     temp_stack = []
 
     for c in exp_postfix:
@@ -69,7 +71,7 @@ def parse_expression(expression):
             # add numbers to stack
             temp_stack.append(c)
         elif c in '+-*/^lr!':
-            if len(temp_stack) == 1 or c in "l!r":
+            if len(temp_stack) == 1 or c in "l!":
                 # calculate functions
                 right = temp_stack.pop()
                 if c == 'l':
@@ -77,9 +79,6 @@ def parse_expression(expression):
                     temp_stack.append(result)
                 elif c == '!':
                     result = convert_str(factorial(float(right)))
-                    temp_stack.append(result)
-                elif c == 'r':
-                    result = convert_str(nroot(float(right)))
                     temp_stack.append(result)
             elif len(temp_stack) >= 2:
                 # calculate with binary operators
@@ -100,9 +99,12 @@ def parse_expression(expression):
                 elif c == '^':
                     result = convert_str(pow(float(left), float(right)))
                     temp_stack.append(result)
+                elif c == 'r':
+                    result = convert_str(nroot(float(right), float(left)))
+                    temp_stack.append(result)
             else:
                 pass
-
+    print(temp_stack)
     answer = temp_stack.pop()
 
     return float(answer)
@@ -132,21 +134,25 @@ def convert_unary_func(expression):
     expression for further postfix translation.
     """
 
-    # replace 'log' to 'l'
     expression = expression.replace('log', 'l')
+    expression = expression.replace('√', 'r')
 
-    # replace '√' to '√()'
-    root = re.findall(r'(?<=\u221a)\-*[0-9.]+', expression)
-    for i in root:
-        expression = expression.replace('√' + i, 'r(' + i + ')')
-
-    # change unary negation operator '-' to '0-'
     for i in range(len(expression)):
+        # change unary negation operator '-' to '0-'
         if expression[i] == '(' and expression[i + 1] == '-':
             expression = expression[:i + 1] + '0' + expression[i + 1:]
 
         elif i == 0 and expression[i] == '-':
             expression = '0' + expression[i:]
+
+        # default n=2 for root
+        elif expression[i] == 'r':
+            if expression[i] == 'r' and expression[i - 1] not in '0123456789' and i != 0:
+                expression = expression[:i] + '2' + expression[i:]
+            elif i == 0 and expression[i] == 'r':
+                expression = '2' + expression[i:]
+            else:
+                pass
 
     return expression
 
@@ -220,7 +226,9 @@ def syntax(expression):
             if len(expression) == 1 and expression[n] in "+-*/!^)(√":
                 # one character in expression is operator
                 return False
-            elif expression[n] in "√" and expression[n + 1] in "√+*/!^.()":
+            elif expression[n] in "√" and expression[n + 1] in "√+-*/!^.)":
+                return False
+            elif expression == "√(" or expression == "log(":
                 return False
             elif expression[n] in "+-*/^." and expression[n + 1] in "+*/!^.)":
                 # operators in expression one by one

@@ -231,8 +231,17 @@ class Ui_Calculator(object):
                                    "color: rgb(229, 228, 226);"
                                    "}\n" 
                                    "\n")
-
         self.display.setObjectName("display")
+
+        self.btn_about = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_about.setMinimumSize(QtCore.QSize(50, 20))
+        self.btn_about.setMaximumSize(QtCore.QSize(50, 20))
+        self.btn_about.setStyleSheet("color: rgb(247, 220, 111);\n"
+                                     "font: 10px")
+        self.btn_about.setObjectName("About")
+
+
+
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -266,3 +275,4 @@ class Ui_Calculator(object):
         self.btn_exp.setText(_translate("MainWindow", "e\u207F"))
         self.btn_plus.setText(_translate("MainWindow", "+"))
         self.display.setText(_translate("MainWindow", ""))
+        self.btn_about.setText(_translate("MainWindow", "About"))

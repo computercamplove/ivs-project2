@@ -1,5 +1,6 @@
 from PyQt5 import QtWidgets
 from PyQt5.Qt import Qt
+from PyQt5.QtWidgets import QMessageBox
 from ui_calculator import Ui_Calculator
 import matlib
 
@@ -44,6 +45,8 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         self.btn_log.pressed.connect(self.log_pressed)
         self.btn_exp.pressed.connect(self.power_pressed)
         self.btn_sqrt.pressed.connect(self.sqrt_pressed)
+
+        self.btn_about.pressed.connect(self.about_pressed)
 
     def keyPressEvent(self, event):
         """
@@ -297,6 +300,15 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
         self.display.setText(lcd_result)
 
+    def about_pressed(self):
+        about = QMessageBox()
+        about.setWindowTitle("About CalcIVS App")
+        about.setText('CalcIVS App\n\nVersion 1.0.0.\n'
+                      'Calculator performs basic calculations such as addition, subtraction, multiplication, division'
+                      'and scientific operations such as logarithmic, square root, factorial, and exponentiation '
+                      'functions.\n\n '
+                      'Copyright © 2021')
+        about.exec_()
 
     def lcd_string(self, string):
         """Checks right amount of characters on display."""
@@ -308,7 +320,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
     def error_lcd(self, string):
         """Checks display for Error message."""
-        
+
         if string == "Hodnotou 0 nelze delit" or \
                 string == "Hodnota nemuze byt vetsi nez 899" or \
                 string == "Hodnota nemuze byt mene nez 0" or \

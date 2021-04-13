@@ -1,5 +1,6 @@
 import math
 import re
+from collections import deque
 
 
 def add(a, b):
@@ -125,6 +126,8 @@ def top(a):
 
 def convert_str(number):
     """Converts float into string."""
+    if type(number) != int and type(number) != float:
+        raise TypeError
     return format(number, '.15g')
 
 
@@ -163,7 +166,7 @@ def postfix(expression):
     exp_list = re.findall(r'[0-9.]+|.', expression)
     numbers = re.findall(r'\d*\.?\d+|\d+', expression)
     op = {'(': 0, '+': 1, '-': 1, '*': 2, '/': 2, '^': 3, '!': 3, ')': 4, 'l': 0, 'r': 0}
-    stack = []
+    stack = deque()
     que = []
 
     for c in exp_list:

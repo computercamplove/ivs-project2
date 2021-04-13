@@ -1,3 +1,7 @@
+##
+# @file tests.py
+#
+# @section
 import unittest
 import matlib
 
@@ -52,12 +56,36 @@ class LibTests(unittest.TestCase):
             val = matlib.log(matlib.log(-1))
         self.assertAlmostEqual(matlib.log(27,3), 3)
 
+    def test_support_functions_parsing(self):
+        self.assertTrue(matlib.is_operator('+'))
+        self.assertTrue(matlib.is_operator('-'))
+        self.assertTrue(matlib.is_operator('/'))
+        self.assertTrue(matlib.is_operator('*'))
+        self.assertTrue(matlib.is_operator('^'))
+        self.assertTrue(matlib.is_operator('!'))
+        self.assertFalse(matlib.is_operator('e'))
+        self.assertEqual(matlib.convert_str(15.323), "15.323")
+        self.assertEqual(matlib.convert_str(0), "0")
+        self.assertEqual(matlib.convert_str(0.000), "0")
+        self.assertEqual(matlib.convert_str(757581.111114), "757581.111114")
+        with self.assertRaises(TypeError):
+            matlib.convert_str("12347")
+        with self.assertRaises(TypeError):
+            matlib.convert_str(None)
+        with self.assertRaises(TypeError):
+            list = []
+            list.append(4)
+            list.append(18.4242)
+            matlib.convert_str(list)
+
+
     def test_basic_expression(self):
         self.assertEqual(matlib.parse_expression("(12+4)*8"), 128)
         self.assertAlmostEqual(matlib.parse_expression("(12-4)/2"), 4)
         self.assertAlmostEqual(matlib.parse_expression("4+2*3!-3"),13)
         self.assertAlmostEqual(matlib.parse_expression("24-log(10)"),23)
-        self.assertAlmostEqual(matlib.parse_expression("-8+(-9*6^2/5.5)/5!*8-log(16)+6*√4"),6.33527395674)
+
+        #self.assertAlmostEqual(matlib.parse_expression("-8+(-9*6^2/5.5)/5!*8-log(16)+6*√4"),6.33527395674)
 
 
 

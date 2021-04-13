@@ -6,6 +6,7 @@ class Ui_Calculator(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(319, 399)
+        MainWindow.setFixedSize(319, 399)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.centralwidget.setStyleSheet("background-color: rgb(52, 52, 52);")
@@ -171,12 +172,12 @@ class Ui_Calculator(object):
         self.btn_right_b.setObjectName("btn_right_b")
         self.gridLayout.addWidget(self.btn_right_b, 0, 3, 1, 1)
 
-        self.btn_plusminus = QtWidgets.QPushButton(self.gridLayoutWidget)
-        self.btn_plusminus.setMinimumSize(QtCore.QSize(61, 61))
-        self.btn_plusminus.setMaximumSize(QtCore.QSize(61, 61))
-        self.btn_plusminus.setStyleSheet("color: rgb(173, 161, 244);")
-        self.btn_plusminus.setObjectName("btn_plusminus")
-        self.gridLayout.addWidget(self.btn_plusminus, 4, 3, 1, 1)
+        self.btn_answer = QtWidgets.QPushButton(self.gridLayoutWidget)
+        self.btn_answer.setMinimumSize(QtCore.QSize(61, 61))
+        self.btn_answer.setMaximumSize(QtCore.QSize(61, 61))
+        self.btn_answer.setStyleSheet("color: rgb(173, 161, 244);")
+        self.btn_answer.setObjectName("btn_plusminus")
+        self.gridLayout.addWidget(self.btn_answer, 4, 3, 1, 1)
 
         self.btn_clear = QtWidgets.QPushButton(self.gridLayoutWidget)
         self.btn_clear.setMinimumSize(QtCore.QSize(61, 61))
@@ -230,8 +231,17 @@ class Ui_Calculator(object):
                                    "color: rgb(229, 228, 226);"
                                    "}\n" 
                                    "\n")
-
         self.display.setObjectName("display")
+
+        self.btn_about = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_about.setMinimumSize(QtCore.QSize(50, 20))
+        self.btn_about.setMaximumSize(QtCore.QSize(50, 20))
+        self.btn_about.setStyleSheet("color: rgb(247, 220, 111);\n"
+                                     "font: 10px")
+        self.btn_about.setObjectName("About")
+
+
+
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
@@ -254,7 +264,7 @@ class Ui_Calculator(object):
         self.btn_right_b.setText(_translate("MainWindow", ")"))
         self.btn_result.setText(_translate("MainWindow", "="))
         self.btn1.setText(_translate("MainWindow", "1"))
-        self.btn_plusminus.setText(_translate("MainWindow", "+/-"))
+        self.btn_answer.setText(_translate("MainWindow", "Ans"))
         self.btn_clear.setText(_translate("MainWindow", "C"))
         self.btn_log.setText(_translate("MainWindow", "log(n)"))
         self.btn7.setText(_translate("MainWindow", "7"))
@@ -265,3 +275,4 @@ class Ui_Calculator(object):
         self.btn_exp.setText(_translate("MainWindow", "e\u207F"))
         self.btn_plus.setText(_translate("MainWindow", "+"))
         self.display.setText(_translate("MainWindow", ""))
+        self.btn_about.setText(_translate("MainWindow", "About"))

@@ -5,6 +5,12 @@
 import matlib
 import sys
 
+# arguments handling
+if (len(sys.argv) > 1):
+    sys.stderr.write("Invalid input - you must enter some data.\n")
+    sys.exit(2)
+
+# input processing
 try:
     numbers = list(map(int, sys.stdin.read().split()))
 
@@ -12,22 +18,20 @@ try:
         sys.stderr.write("Invalid input - you must enter some data.\n")
         sys.exit(2)
 
-except ValueError:
-    sys.stderr.write("Invalid input data, not a number.\n")
-    sys.exit(2)
-except:
-    sys.stderr.write("An unexpected error occurred.\n")
+except (ValueError, KeyboardInterrupt):
+    sys.stderr.write("Invalid input data, not a number or keyboard interrupt.\n")
     sys.exit(2)
 
-# arithmetical mean and deviation summary
+# Calculating standard deviation
 def standardDeviation(numbers):
 
     count = len(numbers)
 
-    if (count == 0):
+    if (count < 2):
         sys.stderr.write("Invalid input data, numbers count must be greater than 2.\n")
         sys.exit(2)
 
+# arithmetical mean and deviation summary
     arMean = 0.0
     devSummary = 0.0
 
@@ -35,8 +39,10 @@ def standardDeviation(numbers):
         arMean = matlib.add(arMean, num)
         devSummary = matlib.add(devSummary, matlib.pow(num, 2.0))
 
+# Average calculating
     arMean = matlib.div(arMean, count)
 
+# Deviation calculating
     deviation = matlib.nroot(matlib.div(matlib.sub(devSummary, matlib.mul(count, matlib.pow(arMean, 2.0))), matlib.sub(count, 1.0)), 2.0)
     print(deviation)
 

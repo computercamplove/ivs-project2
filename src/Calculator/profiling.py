@@ -5,30 +5,18 @@
 import matlib
 import sys
 
-if (len(sys.argv) != 1):
-    sys.stderr.write("Invalid number of arguments.\n")
-    sys.exit(2)
+try:
+    numbers = list(map(int, sys.stdin.read().split()))
 
-data = []
-while True:
-    try:
-        line = input()
-        if line:
-            data.append(line.split(" "))
-        else:
-            break
-    except EOFError:
-        break
-    except:
-        sys.stderr.write("An unexpected error occurred.\n")
+    if (numbers == []):
+        sys.stderr.write("Invalid input - you must enter some data.\n")
         sys.exit(2)
 
-data_str = [val for sublist in data for val in sublist]
-
-try:
-    numbers = list(map(int, data_str))
 except ValueError:
-    sys.stderr.write("Invalid input data - not a number.\n")
+    sys.stderr.write("Invalid input data, not a number.\n")
+    sys.exit(2)
+except:
+    sys.stderr.write("An unexpected error occurred.\n")
     sys.exit(2)
 
 # arithmetical mean and deviation summary

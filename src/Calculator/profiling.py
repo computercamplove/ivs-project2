@@ -3,8 +3,12 @@
 # Pavlina Auerova
 
 import matlib
+import sys
 
-# nacte vstup (random cisla) a vrati pole
+if (len(sys.argv) != 1):
+    sys.stderr.write("Invalid number of arguments.\n")
+    sys.exit(2)
+
 data = []
 while True:
     try:
@@ -15,33 +19,41 @@ while True:
             break
     except EOFError:
         break
+    except:
+        sys.stderr.write("An unexpected error occurred.\n")
+        sys.exit(2)
 
 data_str = [val for sublist in data for val in sublist]
-numbers = list(map(int, data_str))
-#print(numbers)
+
+try:
+    numbers = list(map(int, data_str))
+except ValueError:
+    sys.stderr.write("Invalid input data - not a number.\n")
+    sys.exit(2)
 
 # arithmetical mean and deviation summary
+def standardDeviation(numbers):
 
-count = len(numbers)
+    count = len(numbers)
 
-# TODO osetreni pokud je count < 2
+    if (count == 0):
+        sys.stderr.write("Invalid input data, numbers count must be greater than 2.\n")
+        sys.exit(2)
 
-arMean = 0.0
-devSummary = 0.0
+    arMean = 0.0
+    devSummary = 0.0
 
-for num in numbers:
-    arMean = matlib.add(arMean, num)
-    devSummary = matlib.add(devSummary, matlib.pow(num, 2.0))
+    for num in numbers:
+        arMean = matlib.add(arMean, num)
+        devSummary = matlib.add(devSummary, matlib.pow(num, 2.0))
 
-arMean = matlib.div(arMean, count)
+    arMean = matlib.div(arMean, count)
 
-deviation = matlib.nroot(matlib.div(matlib.sub(devSummary, matlib.mul(count, matlib.pow(arMean, 2.0))), matlib.sub(count, 1.0)), 2.0)
+    deviation = matlib.nroot(matlib.div(matlib.sub(devSummary, matlib.mul(count, matlib.pow(arMean, 2.0))), matlib.sub(count, 1.0)), 2.0)
+    print(deviation)
 
-print(deviation)
-
-
-
-
-
-
-
+try:
+    standardDeviation(numbers)
+except:
+    sys.stderr.write("An unexpected error occurred.\n")
+    sys.exit(2)

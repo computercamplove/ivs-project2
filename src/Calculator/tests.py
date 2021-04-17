@@ -10,7 +10,7 @@ import unittest
 import matlib
 
 ##
-#@defgroup tests Tests
+#@defgroup tests Basic Tests
 #@brief Tests for matlib library
 #@{
 
@@ -80,6 +80,13 @@ class LibTests(unittest.TestCase):
             val = matlib.log(matlib.log(-1))
         self.assertAlmostEqual(matlib.log(27,3), 3)
 
+#@}
+
+##
+#@defgroup tests Advanced Tests
+#@brief Advanced Tests for matlib library and for parsing functions
+#@{
+class AdvancedTests(unittest.TestCase):
     ##
     #@brief Purpose of this test is to test various functions which are used for parsing
     def test_support_functions_parsing(self):
@@ -113,9 +120,6 @@ class LibTests(unittest.TestCase):
         self.assertAlmostEqual(matlib.parse_expression("24-log(10)"),23)
 
         #self.assertAlmostEqual(matlib.parse_expression("-8+(-9*6^2/5.5)/5!*8-log(16)+6*√4"),6.33527395674)
-
-#@}
-
 
 if __name__ == '__main__':
     unittest.main()

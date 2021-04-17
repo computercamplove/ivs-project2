@@ -66,9 +66,11 @@ def factorial(a):
 ##
 #@brief Fuction that calculates a power b
 #@param a is integer or float
-#@param b is integer or float
+#@param b is integer or float max value is 99
 #@return result of a power b
 def pow(a, b):
+    if b > 99:
+        raise ValueError("Hodnota exponentu nemuze byt vyssi nez 99")
     return a ** b
 
 ##

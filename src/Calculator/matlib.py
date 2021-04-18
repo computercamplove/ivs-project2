@@ -1,22 +1,45 @@
+
+##
+#@file matlib.py
+#
+#@brief Library with mathematical functions
+
 import math
 import re
+from collections import deque
 
-
+##
+#@brief Function that adds two parameters and returns them as a result
+#@param a is integer or float
+#@param b is integer or float
+#@return result of add operation
 def add(a, b):
     return a + b
 
-
+##
+#@brief Function that subtracts two parameters and returns them as a result
+#@param a is integer or float
+#@param b is integer or float
+#@return result of subtract operation
 def sub(a, b):
     return a - b
 
-
+##
+#@brief Function that multiplies two parameters and returns them as a result
+#@param a is integer or float
+#@param b is integer or float
+#@return result of multiply operation
 def mul(a, b):
     exp = a * b
     if exp == 0:
         exp = 0
     return exp
 
-
+##
+#@brief Function that divides two parameters and returns them as a result
+#@param a is integer or float
+#@param b is integer or float
+#@return result of divide operation
 def div(a, b):
     if b == 0:
         raise ValueError("Hodnotou 0 nelze delit")
@@ -25,7 +48,10 @@ def div(a, b):
         exp = 0
     return exp
 
-
+##
+#@brief Function that calculates factorial of integer
+#@param a is integer
+#@return result of factorial operation
 def factorial(a):
     if a >= 990:
         raise ValueError("Hodnota nemuze byt vetsi nez 899")
@@ -37,25 +63,41 @@ def factorial(a):
         raise ValueError("Hodnota nemuze byt mene nez 0")
     return val
 
-
+##
+#@brief Function that calculates a power b
+#@param a is integer or float
+#@param b is integer or float max value is 99
+#@return result of a power b
 def pow(a, b):
+    if b > 99:
+        raise ValueError("Hodnota exponentu nemuze byt vyssi nez 99")
     return a ** b
 
-
+##
+#@brief Function that calculates  root of a where base is b (defaul base is 2)
+#@param a is integer or float
+#@param b is integer or float
+#@return result of n-root a
 def nroot(a, b=2):
     if a < 0:
         raise ValueError("Hodnota nemuze byt mene nez 0")
     return a ** (1/float(b))
 
-
+##
+#@brief Function that calculates logarithm of a where base is b (defaul base is 10)
+#@param a is integer or float
+#@param b is integer or float
+#@return result base-b logarithm of a
 def log(a, b=10):
     if a < 0:
         raise ValueError("Hodnota nemuze byt mene nez 0")
     return math.log(a, b)
 
-
+##
+#@brief Function that parses given expression in string, it determines operands and calls other matlib functions for calculation
+#@param expression string containing expressions which needs to be calculated
+#@return return result of expression
 def parse_expression(expression):
-    """Evaluate math expression."""
 
     if not syntax(expression):
         raise ValueError("Syntax Error in Expression")
@@ -109,30 +151,40 @@ def parse_expression(expression):
 
     return float(answer)
 
-
+##
+#@brief Checks if value is operator
+#@param c string containing operator
+#@return boolean
 def is_operator(c):
-    """Check if character is operator."""
     operators = "+-*/^!"
     return c in operators
 
-
+##
+#@brief Function gives top value on stack
+#@param a is stack on which we want top value
+#@return top value of stack
 def top(a):
-    """Get character on the top of stack."""
     if not a:
         return None
     return a[len(a) - 1]
 
+##
+#@brief Function converts number to string
+#@param number can be integer or float
+#@return converted string
 
 def convert_str(number):
-    """Converts float into string."""
+    if type(number) != int and type(number) != float:
+        raise TypeError
     return format(number, '.15g')
 
+##
+#@brief Function converts a mathematical expression into a suitable expression for further postfix translation
+#@param expression to be converted
+#@return converted expression
 
 def convert_unary_func(expression):
-    """
-    Function converts a mathematical expression into a suitable
-    expression for further postfix translation.
-    """
+
 
     expression = expression.replace('log', 'l')
     expression = expression.replace('√', 'r')
@@ -156,14 +208,18 @@ def convert_unary_func(expression):
 
     return expression
 
+##
+#@brief Converts infix expression into postfix expression
+#@param expression to be converted to postfix
+#@return posfix expression
 
 def postfix(expression):
-    """Converts infix expression into postfix expression."""
+
 
     exp_list = re.findall(r'[0-9.]+|.', expression)
     numbers = re.findall(r'\d*\.?\d+|\d+', expression)
     op = {'(': 0, '+': 1, '-': 1, '*': 2, '/': 2, '^': 3, '!': 3, ')': 4, 'l': 0, 'r': 0}
-    stack = []
+    stack = deque()
     que = []
 
     for c in exp_list:
@@ -210,9 +266,12 @@ def postfix(expression):
 
     return que
 
+##
+#@brief Check syntax of math expression
+#@param expression to be checked for syntax errors
+#@return bool
 
 def syntax(expression):
-    """Check syntax of mathe expression."""
 
     if expression[-1] in "+-*/^(√." or expression[0] in "*/^.)!":
         # last character in expression not number or not right parenthesis

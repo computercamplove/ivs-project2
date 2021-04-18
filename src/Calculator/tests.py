@@ -112,6 +112,36 @@ class AdvancedTests(unittest.TestCase):
             matlib.convert_str(list)
 
     ##
+    # @brief Purpose of this test is to try various cases on syntax checking
+    def test_syntax(self):
+        self.assertTrue(matlib.syntax("4+2"))
+        self.assertTrue(matlib.syntax("((4+2)/12-3*(2^2-3.233454)*√2)-log(123.777)"))
+        self.assertFalse(matlib.syntax("((4+2)/12-3*(2^2-3.233454)*√2"))
+        self.assertFalse(matlib.syntax("((4+2)/12-3*(2)^2-3.233454)*√2)"))
+        self.assertFalse(matlib.syntax("((4+2)/12-3*(2)^2-3.233454)*√2)"))
+        self.assertFalse(matlib.syntax("log(2134.44"))
+        self.assertFalse(matlib.syntax("4^^2"))
+        self.assertFalse(matlib.syntax("4++2"))
+        self.assertFalse(matlib.syntax("4//2"))
+    ##
+    # @brief Purpose of this test is to try various cases on unary conversion function
+    def test_unary(self):
+        self.assertEqual(''.join(matlib.convert_unary_func("(1^1/(5-1))-344.12+log(10)-4√74")), "(1^1/(5-1))-344.12+l(10)-4r74")
+        self.assertEqual(''.join(matlib.convert_unary_func("-74+122")), "0-74+122")
+        self.assertEqual(''.join(matlib.convert_unary_func("-74-122")), "0-74-122")
+        self.assertNotEqual(''.join(matlib.convert_unary_func("(1^1/(5-1))-344.12+log(10)-4√74")), "(1^1/(5-1))-344.12+log(10)-4√74")
+    ##
+    # @brief Purpose of this test is to try various cases on postfix function
+    def test_postfix(self):
+        self.assertEqual(''.join(matlib.postfix("1^1/(5*1)+10")), "11^51*/10+")
+        self.assertEqual(''.join(matlib.postfix("(1^1/(5-1))-344.12+log(10)-74")), "11^51-/344.12-10l+74-")
+        self.assertEqual(''.join(matlib.postfix("( 1 ^ 1 / ( 5 - 1))-344.12+l(10)-74")), "11^51-/344.12-10l+74-")
+        self.assertEqual(''.join(matlib.postfix("( 1 ^ 1 / ( 5 - 1))-344.12+l(10)-4r74")), "11^51-/344.12-10l+474r-")
+        self.assertNotEqual(''.join(matlib.postfix("1^1/(5*1)+10")), "^1151*/+10")
+
+
+
+    ##
     #@brief Purpose of this test is to try various cases on parsing and calculating expressions
     def test_basic_expression(self):
         self.assertEqual(matlib.parse_expression("(12+4)*8"), 128)

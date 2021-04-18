@@ -9,7 +9,7 @@ import re
 from collections import deque
 
 ##
-#@brief Fuction that adds two parameters and returns them as result
+#@brief Function that adds two parameters and returns them as a result
 #@param a is integer or float
 #@param b is integer or float
 #@return result of add operation
@@ -17,7 +17,7 @@ def add(a, b):
     return a + b
 
 ##
-#@brief Fuction that subtracts two parameters and returns them as result
+#@brief Function that subtracts two parameters and returns them as a result
 #@param a is integer or float
 #@param b is integer or float
 #@return result of subtract operation
@@ -25,7 +25,7 @@ def sub(a, b):
     return a - b
 
 ##
-#@brief Fuction that multiplies two parameters and returns them as result
+#@brief Function that multiplies two parameters and returns them as a result
 #@param a is integer or float
 #@param b is integer or float
 #@return result of multiply operation
@@ -36,7 +36,7 @@ def mul(a, b):
     return exp
 
 ##
-#@brief Fuction that divides two parameters and returns them as result
+#@brief Function that divides two parameters and returns them as a result
 #@param a is integer or float
 #@param b is integer or float
 #@return result of divide operation
@@ -49,7 +49,7 @@ def div(a, b):
     return exp
 
 ##
-#@brief Fuction that calculates factorial of integer
+#@brief Function that calculates factorial of integer
 #@param a is integer
 #@return result of factorial operation
 def factorial(a):
@@ -64,7 +64,7 @@ def factorial(a):
     return val
 
 ##
-#@brief Fuction that calculates a power b
+#@brief Function that calculates a power b
 #@param a is integer or float
 #@param b is integer or float max value is 99
 #@return result of a power b
@@ -74,7 +74,7 @@ def pow(a, b):
     return a ** b
 
 ##
-#@brief Fuction that calculates  root of a where base is b (defaul base is 2)
+#@brief Function that calculates  root of a where base is b (defaul base is 2)
 #@param a is integer or float
 #@param b is integer or float
 #@return result of n-root a
@@ -84,7 +84,7 @@ def nroot(a, b=2):
     return a ** (1/float(b))
 
 ##
-#@brief Fuction that calculates logarithm of a where base is b (defaul base is 10)
+#@brief Function that calculates logarithm of a where base is b (defaul base is 10)
 #@param a is integer or float
 #@param b is integer or float
 #@return result base-b logarithm of a
@@ -94,7 +94,7 @@ def log(a, b=10):
     return math.log(a, b)
 
 ##
-#@brief Fuction that parses given expression in string, it determines ooperands and calls other matlib functions for calculation
+#@brief Function that parses given expression in string, it determines operands and calls other matlib functions for calculation
 #@param expression string containing expressions which needs to be calculated
 #@return return result of expression
 def parse_expression(expression):

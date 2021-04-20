@@ -6,7 +6,7 @@ import matlib
 import sys
 
 # arguments handling
-if (len(sys.argv) > 1):
+if len(sys.argv) > 1:
     sys.stderr.write("Invalid input - you must enter some data.\n")
     sys.exit(2)
 

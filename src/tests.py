@@ -1,9 +1,13 @@
+#!/usr/bin/python
+
 ##
-# @mainpage IVS project documentation
-# Doxygen documentation for IVS second project
-#
-# @file tests.py
-# @brief File contains tests for matlib library
+# @package tests.py
+# @brief Tests for matlib library
+
+##########################################
+# IVS projekt 2 - tests                  #
+# author: Michal Drla                    #
+##########################################
 
 # Imports
 import unittest
@@ -74,12 +78,28 @@ class LibTests(unittest.TestCase):
         self.assertAlmostEqual(matlib.nroot(27, 3), 3)
 
     ##
+    # @brief Purpose of this test is to try various cases on parantheses parsing
+    def test_basic_parantheses(self):
+        self.assertEqual(matlib.parse_expression("(((4+3)-5)*3)!"), 720)
+        self.assertEqual(matlib.parse_expression("((((4/2)*3)-5)*3)!"), 6)
+        self.assertEqual(matlib.parse_expression("(4/2)*(3-2)!"), 6)
+
+    ##
     # @brief Purpose of this test is to try various cases on log operation
     def test_basic_log(self):
         self.assertAlmostEqual(matlib.log(100), 2)
         with self.assertRaises(ValueError):
             val = matlib.log(matlib.log(-1))
         self.assertAlmostEqual(matlib.log(27, 3), 3)
+
+    ##
+    # @brief Purpose of this test is to try various cases on parsing and calculating expressions
+    def test_basic_expression(self):
+        self.assertEqual(matlib.parse_expression("(12+4)*8"), 128)
+        self.assertAlmostEqual(matlib.parse_expression("(12-4)/2"), 4)
+        self.assertAlmostEqual(matlib.parse_expression("4+2*3!-3"), 13)
+        self.assertAlmostEqual(matlib.parse_expression("24-log(10)"), 23)
+        self.assertAlmostEqual(matlib.parse_expression("-8+(-9*6^2/5.5)/5!*8-log(16)+6*√(4)"), -1.1313927099286)
 
 
 # @}
@@ -145,14 +165,6 @@ class AdvancedTests(unittest.TestCase):
         self.assertEqual(''.join(matlib.postfix("( 1 ^ 1 / ( 5 - 1))-344.12+l(10)-4r74")), "11^51-/344.12-10l+474r-")
         self.assertNotEqual(''.join(matlib.postfix("1^1/(5*1)+10")), "^1151*/+10")
 
-    ##
-    # @brief Purpose of this test is to try various cases on parsing and calculating expressions
-    def test_basic_expression(self):
-        self.assertEqual(matlib.parse_expression("(12+4)*8"), 128)
-        self.assertAlmostEqual(matlib.parse_expression("(12-4)/2"), 4)
-        self.assertAlmostEqual(matlib.parse_expression("4+2*3!-3"), 13)
-        self.assertAlmostEqual(matlib.parse_expression("24-log(10)"), 23)
-        self.assertAlmostEqual(matlib.parse_expression("-8+(-9*6^2/5.5)/5!*8-log(16)+6*√(4)"), -1.1313927099286)
 
 
 if __name__ == '__main__':

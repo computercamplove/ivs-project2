@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-# IVS projekt 2 - profiling
-# Pavlina Auerova
 
+
+##########################################
+# IVS projekt 2 - profiling              #
+# author: Pavlina Auerova                #
+##########################################
 import matlib
 import sys
 

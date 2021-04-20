@@ -1,8 +1,16 @@
-##
-# @file matlib.py
-#
-# @brief Library with mathematical functions
+#!/usr/bin/python
 
+##
+# @package matlib.py
+#
+# @brief Library with mathematical functions.
+# Library contains basic functions which are addition, subraction, multiplication, division, logarithm, power, n-root.
+# Also it contains parsing of parantheses and functions necessary to parse longer expressions
+
+###########################################
+# IVS projekt 2 - mathematical library    #
+# author: Michal Drla, Abikenova Zhamilya #
+###########################################
 import math
 import re
 from collections import deque
@@ -55,6 +63,7 @@ def div(a, b):
 ##
 # @brief Function that calculates factorial of integer
 # @param a is integer
+# @exception Raises ValueError when value is higher than 899 or less than 0
 # @return result of factorial operation
 def factorial(a):
     if a >= 990:
@@ -72,6 +81,7 @@ def factorial(a):
 # @brief Function that calculates a power b
 # @param a is integer or float
 # @param b is integer or float max value is 99
+# @exception Raises ValueError when value is higher than 99
 # @return result of a power b
 def pow(a, b):
     if b > 99:
@@ -83,6 +93,7 @@ def pow(a, b):
 # @brief Function that calculates  root of a where base is b (default base is 2)
 # @param a is integer or float
 # @param b is integer or float
+# @exception Raises ValueError when value is less than 0
 # @return result of n-root a
 def nroot(a, b=2):
     if a < 0:
@@ -94,6 +105,7 @@ def nroot(a, b=2):
 # @brief Function that calculates logarithm of a where base is b (default base is 10)
 # @param a is integer or float
 # @param b is integer or float
+# @exception Raises ValueError when value is less than 0
 # @return result base-b logarithm of a
 def log(a, b=10):
     if a < 0:
@@ -105,6 +117,7 @@ def log(a, b=10):
 # @brief Function that parses given expression in string, it determines operands and calls other matlib functions
 # for calculation
 # @param expression string containing expressions which needs to be calculated
+# @exception Raises ValueError when there is Syntax Error
 # @return return result of expression
 def parse_expression(expression):
     if not syntax(expression):

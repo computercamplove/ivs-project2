@@ -1,3 +1,9 @@
+###########################################
+# IVS projekt 2 - mathematical library    #
+# author: Abikenova Zhamilya              #
+###########################################
+
+
 from PyQt5 import QtWidgets
 from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import QMessageBox

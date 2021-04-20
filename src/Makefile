@@ -1,4 +1,4 @@
-DOXYGEN_CONFIG = ../../config_file
+DOXYGEN_CONFIG = ../config_file
 
 .Phony all start clean test doc run profile pack
 
@@ -12,11 +12,11 @@ clean:
 test:
     python3 tests.py
 doc:
-    rm -rf ../../doxygen_documentation
-    mkdir ../../doxygen_documentation
+    rm -rf ../doxygen_documentation
+    mkdir ../doxygen_documentation
     doxygen $(DOXYGEN_CONFIG)
-    mv ../../html/ ../../doxygen_documentation
-    rm -rf ../../latex/
+    mv ../html/ ../doxygen_documentation
+    rm -rf ../latex/
 run:
     python3 main.py
 profile:

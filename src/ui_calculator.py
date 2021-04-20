@@ -1,3 +1,9 @@
+###########################################
+# IVS projekt 2 - mathematical library    #
+# author: Abikenova Zhamilya              #
+###########################################
+
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import *
 

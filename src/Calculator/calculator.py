@@ -321,9 +321,10 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
     def error_lcd(self, string):
         """Checks display for Error message."""
 
-        if string == "Hodnotou 0 nelze delit" or \
-                string == "Hodnota nemuze byt vetsi nez 899" or \
-                string == "Hodnota nemuze byt mene nez 0" or \
+        if string == "ZeroDivisionError" or \
+                string == "Value can't be greater than 899" or \
+                string == "Value can't be less than 0" or \
+                string == "Value can't be greater than 99" or \
                 string == "Syntax Error in Expression":
             return True
         else:

@@ -45,7 +45,7 @@ def mul(a, b):
 # @return result of divide operation
 def div(a, b):
     if b == 0:
-        raise ValueError("Hodnotou 0 nelze delit")
+        raise ValueError("ZeroDivisionError")
     exp = a / b
     if exp == 0:
         exp = 0
@@ -58,13 +58,13 @@ def div(a, b):
 # @return result of factorial operation
 def factorial(a):
     if a >= 990:
-        raise ValueError("Hodnota nemuze byt vetsi nez 899")
+        raise ValueError("Value can't be greater than 899")
     if a > 0:
         val = a * factorial(a - 1)
     elif a == 0:
         return 1
     else:
-        raise ValueError("Hodnota nemuze byt mene nez 0")
+        raise ValueError("Value can't be less than 0")
     return val
 
 
@@ -75,7 +75,7 @@ def factorial(a):
 # @return result of a power b
 def pow(a, b):
     if b > 99:
-        raise ValueError("Hodnota exponentu nemuze byt vyssi nez 99")
+        raise ValueError("Value can't be greater than 99")
     return a ** b
 
 
@@ -86,7 +86,7 @@ def pow(a, b):
 # @return result of n-root a
 def nroot(a, b=2):
     if a < 0:
-        raise ValueError("Hodnota nemuze byt mene nez 0")
+        raise ValueError("Value can't be less than 0")
     return a ** (1 / float(b))
 
 
@@ -97,7 +97,7 @@ def nroot(a, b=2):
 # @return result base-b logarithm of a
 def log(a, b=10):
     if a < 0:
-        raise ValueError("Hodnota nemuze byt mene nez 0")
+        raise ValueError("Value can't be less than 0")
     return math.log(a, b)
 
 

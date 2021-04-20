@@ -103,9 +103,7 @@ def parse_expression(expression):
         raise ValueError("Syntax Error in Expression")
 
     expression = convert_unary_func(expression)
-    print(expression)
     exp_postfix = postfix(expression)
-    print(exp_postfix)
     temp_stack = []
 
     for c in exp_postfix:
@@ -146,7 +144,6 @@ def parse_expression(expression):
                     temp_stack.append(result)
             else:
                 pass
-    print(temp_stack)
     answer = temp_stack.pop()
 
     return float(answer)
@@ -289,7 +286,8 @@ def syntax(expression):
                 return False
             elif expression == "√(" or expression == "log(":
                 return False
-            elif expression[n] in "+-*/^." and expression[n + 1] in "+*/!^.)":
+            elif (expression[n] in "+-*/^." and expression[n + 1] in "+*/!^.)") or (expression[n] in "^" and
+                                                                                    expression[n + 1] in "-"):
                 # operators in expression one by one
                 return False
             elif expression[n] in "()":

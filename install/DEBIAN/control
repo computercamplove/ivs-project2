@@ -1,0 +1,6 @@
+Package: test-calculator
+Version: 1.0
+Maintainer: Team
+Architecture: all
+Description: Calculator done
+Depends: python3-pip

@@ -45,6 +45,7 @@ class LibTests(unittest.TestCase):
         self.assertEqual(matlib.mul(0, 2), 0)
         self.assertEqual(matlib.mul(4, -2), -8)
 
+
     ##
     # @brief Purpose of this test is to try various cases on div operation
     def test_basic_div(self):
@@ -82,7 +83,7 @@ class LibTests(unittest.TestCase):
     def test_basic_parantheses(self):
         self.assertEqual(matlib.parse_expression("(((4+3)-5)*3)!"), 720)
         self.assertEqual(matlib.parse_expression("((((4/2)*3)-5)*3)!"), 6)
-        self.assertEqual(matlib.parse_expression("(4/2)*(3-2)!"), 6)
+        self.assertEqual(matlib.parse_expression("(4/2)*(3-2)!"), 2)
 
     ##
     # @brief Purpose of this test is to try various cases on log operation
@@ -101,6 +102,16 @@ class LibTests(unittest.TestCase):
         self.assertAlmostEqual(matlib.parse_expression("24-log(10)"), 23)
         self.assertAlmostEqual(matlib.parse_expression("-8+(-9*6^2/5.5)/5!*8-log(16)+6*√(4)"), -1.1313927099286)
 
+
+
+    def test_basic_one_value(self):
+        self.assertEqual(matlib.parse_expression("-9"), -9)
+        self.assertEqual(matlib.parse_expression("+9"), +9)
+        self.assertEqual(matlib.parse_expression("-0"), 0)
+
+
+    def test_basic_wrong_operands(self):
+        self.assertEqual(matlib.parse_expression("9--9"),4)
 
 # @}
 

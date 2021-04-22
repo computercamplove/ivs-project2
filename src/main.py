@@ -15,9 +15,10 @@
 import sys
 from PyQt5.QtWidgets import QApplication
 from calculator import CalculatorWindow
-
+from platform import system
 app = QApplication(sys.argv)
-
+if system() == 'Linux':
+    app.setStyle('Windows')
 calculator = CalculatorWindow()
 
 sys.exit(app.exec_())

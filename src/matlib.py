@@ -292,7 +292,7 @@ def postfix(expression):
 # @return bool
 
 def syntax(expression):
-    if expression[-1] in "+-*/^(√." or expression[0] in "*/^.)!":
+    if expression[-1] in "+-*/^(√." or expression[0] in "*+/^.)!":
         # last character in expression not number or not right parenthesis
         # or expression starts with not right character
         return False
@@ -309,6 +309,8 @@ def syntax(expression):
             elif expression == "√(" or expression == "log(":
                 return False
             elif (expression[n] in "+-*/^." and expression[n + 1] in "+*/!^.)") or (expression[n] in "^" and
+                                                                                    expression[n + 1] in "-")\
+                                                                                or (expression[n] in "-" and
                                                                                     expression[n + 1] in "-"):
                 # operators in expression one by one
                 return False

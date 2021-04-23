@@ -1,0 +1,8 @@
+[Desktop Entry]
+Categories=Game;
+Exec=calc
+GenericName=Simple Game
+Icon=/usr/share/pixmaps/calculator.xpm
+Name=calc
+Type=Application
+X-KDE-StartupNotify=false

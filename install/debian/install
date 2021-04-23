@@ -1,0 +1,7 @@
+install/calculator.xpm /usr/share/pixmaps
+install/calc.desktop /usr/share/applications
+install/calc /usr/bin
+calc.py /usr/bin
+ui_calculator.py /usr/bin
+matlib.py /usr/bin
+calculator.py /usr/bin

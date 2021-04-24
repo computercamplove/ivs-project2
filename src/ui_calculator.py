@@ -1,13 +1,11 @@
 ###########################################
-# IVS projekt 2 - mathematical library    #
+# IVS projekt 2 - Calculator GUI          #
 # author: Abikenova Zhamilya              #
 ###########################################
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import *
-
-
 
 class Ui_Calculator(object):
     def setupUi(self, MainWindow):
@@ -272,7 +270,13 @@ class Ui_Calculator(object):
                                      "font: 10px")
         self.btn_about.setObjectName("About")
 
-
+        self.btn_help = QtWidgets.QPushButton(self.centralwidget)
+        self.btn_help.setMinimumSize(QtCore.QSize(50, 20))
+        self.btn_help.setGeometry(50, 0, 0, 0)
+        self.btn_help.setMaximumSize(QtCore.QSize(50, 20))
+        self.btn_help.setStyleSheet("color: rgb(247, 220, 111);\n"
+                                     "font: 10px")
+        self.btn_help.setObjectName("Help")
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -297,14 +301,15 @@ class Ui_Calculator(object):
         self.btn_result.setText(_translate("MainWindow", "="))
         self.btn1.setText(_translate("MainWindow", "1"))
         self.btn_answer.setText(_translate("MainWindow", "Ans"))
-        self.btn_clear.setText(_translate("MainWindow", "C"))
+        self.btn_clear.setText(_translate("MainWindow", "AC"))
         self.btn_log.setText(_translate("MainWindow", "log(n)"))
         self.btn7.setText(_translate("MainWindow", "7"))
         self.btn_fact.setText(_translate("MainWindow", "n!"))
         self.btn8.setText(_translate("MainWindow", "8"))
         self.btn_sqrt.setText(_translate("MainWindow", '\u221an'))
         self.btn9.setText(_translate("MainWindow", "9"))
-        self.btn_exp.setText(_translate("MainWindow", "e\u207F"))
+        self.btn_exp.setText(_translate("MainWindow", "x^n"))
         self.btn_plus.setText(_translate("MainWindow", "+"))
         self.display.setText(_translate("MainWindow", ""))
         self.btn_about.setText(_translate("MainWindow", "About"))
+        self.btn_help.setText(_translate("MainWindow", "Help"))

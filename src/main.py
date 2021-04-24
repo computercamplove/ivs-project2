@@ -1,7 +1,7 @@
 #!/usr/bin/python
 
 ###########################################
-# IVS projekt 2 - mathematical library    #
+# IVS projekt 2 - Calculator              #
 ###########################################
 
 

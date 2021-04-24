@@ -1,5 +1,5 @@
 ###########################################
-# IVS projekt 2 - mathematical library    #
+# IVS projekt 2 - Calculator              #
 # author: Abikenova Zhamilya              #
 ###########################################
 
@@ -9,7 +9,6 @@ from PyQt5.Qt import Qt
 from PyQt5.QtWidgets import QMessageBox
 from ui_calculator import Ui_Calculator
 import matlib
-
 
 class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
     """Class used to connect GUI and matlib."""
@@ -53,6 +52,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         self.btn_sqrt.pressed.connect(self.sqrt_pressed)
 
         self.btn_about.pressed.connect(self.about_pressed)
+        self.btn_help.pressed.connect(self.help_pressed)
 
     def keyPressEvent(self, event):
         """
@@ -306,7 +306,8 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
 
         self.display.setText(lcd_result)
 
-    def about_pressed(self):
+    @staticmethod
+    def about_pressed():
         about = QMessageBox()
         about.setWindowTitle("About CalcIVS App")
         about.setText('CalcIVS App\n\nVersion 1.0.0.\n'
@@ -316,7 +317,38 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
                       'Copyright © 2021')
         about.exec_()
 
-    def lcd_string(self, string):
+    @staticmethod
+    def help_pressed():
+        help = QtWidgets.QMessageBox()
+        help.setWindowTitle("Help")
+        help.setText("AC - Clear all of the calculation.\n\n"
+            
+                     "log(n) - Logarithmic function. Base 10 is the default setting. 'n' is number greater than 0. "
+                     "Examples: log(10), log(50-20+3)\n\n"
+                     
+                     "n! - Factorial function where 'n' is number greater than 0. Examples: 5!, (1+4)!\n\n"
+                     
+                     "\u221an - Power root function. Default root is 2, 'n' - number or math expression. "
+                     "Examples: 3\u221a(8), \u221a(5+11).\n\n"
+                     
+                     "x^n - Power function, where 'x' is number and 'n' is power number. Examples: 3^2, (-3)^2, 2^(5-9). \n\n"
+                     
+                     "Ans - Stores the result of the last calculation performed.\n\n"
+                     
+                     "'.'  - Decimal point.\n\n"
+                     
+                     "'(', ')'  - Parenthesis.\n\n"
+                     
+                     "'='  - Calculate math expression.\n\n"
+                     "<x - Delete last sign.\n\n"
+                     "'+' - Addition.\n\n"
+                     "'-' - Subtraction.\n\n"
+                     "'/' - Division.\n\n"
+                     "'*' - Multiplication.\n\n")
+        help.exec_()
+
+    @staticmethod
+    def lcd_string(string):
         """Checks right amount of characters on display."""
 
         if len(string) < 45:
@@ -324,7 +356,8 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         else:
             return False
 
-    def error_lcd(self, string):
+    @staticmethod
+    def error_lcd(string):
         """Checks display for Error message."""
 
         if string == "ZeroDivisionError" or \

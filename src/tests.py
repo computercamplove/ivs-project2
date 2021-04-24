@@ -106,12 +106,14 @@ class LibTests(unittest.TestCase):
 
     def test_basic_one_value(self):
         self.assertEqual(matlib.parse_expression("-9"), -9)
-        self.assertEqual(matlib.parse_expression("+9"), +9)
+        with self.assertRaises(ValueError):
+            self.assertEqual(matlib.parse_expression("+9"), +9)
         self.assertEqual(matlib.parse_expression("-0"), 0)
 
 
     def test_basic_wrong_operands(self):
-        self.assertEqual(matlib.parse_expression("9--9"),4)
+        with self.assertRaises(ValueError):
+            self.assertEqual(matlib.parse_expression("9--9"),4)
 
 # @}
 

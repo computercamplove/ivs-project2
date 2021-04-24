@@ -66,10 +66,15 @@ def div(a, b):
 # @exception Raises ValueError when value is higher than 899 or less than 0
 # @return result of factorial operation
 def factorial(a):
+    if type(a) != int:
+        raise ValueError("Value must be integer")
     if a >= 990:
         raise ValueError("Value can't be greater than 899")
     if a > 0:
-        val = a * factorial(a - 1)
+        result = 1
+        for i in range(1, a+ 1):
+            result = result*i
+        return result
     elif a == 0:
         return 1
     else:
@@ -139,7 +144,7 @@ def parse_expression(expression):
                     result = convert_str(log(float(right)))
                     temp_stack.append(result)
                 elif c == '!':
-                    result = convert_str(factorial(float(right)))
+                    result = convert_str(factorial(int(right)))
                     temp_stack.append(result)
             elif len(temp_stack) >= 2:
                 # calculate with binary operators

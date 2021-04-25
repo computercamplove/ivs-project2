@@ -316,6 +316,8 @@ def syntax(expression):
             elif (expression[n] in "+-*/^." and expression[n + 1] in "+*/!^.)") or (expression[n] in "^" and
                                                                                     expression[n + 1] in "-")\
                                                                                 or (expression[n] in "-" and
+                                                                                    expression[n + 1] in "-")\
+                                                                                or (expression[n] in "/" and
                                                                                     expression[n + 1] in "-"):
                 # operators in expression one by one
                 return False

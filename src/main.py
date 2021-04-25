@@ -1,10 +1,5 @@
 #!/usr/bin/python
 
-###########################################
-# IVS projekt 2 - Calculator              #
-###########################################
-
-
 ##
 # @mainpage IVS project documentation
 # Doxygen documentation for IVS second project

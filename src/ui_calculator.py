@@ -6,8 +6,26 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import *
+from help_ui import Ui_HelpCalc
+from PyQt5.QtWidgets import QMessageBox
 
 class Ui_Calculator(object):
+    def about_pressed(self):
+        about = QMessageBox()
+        about.setWindowTitle("About CalcIVS App")
+        about.setText('CalcIVS App\n\nVersion 1.0.0.\n'
+                      'Calculator performs basic calculations such as addition, subtraction, multiplication, division'
+                      'and scientific operations such as logarithmic, square root, factorial, and exponentiation '
+                      'functions.\n\n '
+                      'Copyright © 2021')
+        about.exec_()
+
+    def open_help(self):
+        self.window = QtWidgets.QMainWindow()
+        self.ui = Ui_HelpCalc()
+        self.ui.setupUi(self.window)
+        self.window.show()
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(325, 403)
@@ -306,7 +324,7 @@ class Ui_Calculator(object):
         self.btn7.setText(_translate("MainWindow", "7"))
         self.btn_fact.setText(_translate("MainWindow", "n!"))
         self.btn8.setText(_translate("MainWindow", "8"))
-        self.btn_sqrt.setText(_translate("MainWindow", '\u221an'))
+        self.btn_sqrt.setText(_translate("MainWindow", 'n\u221ax'))
         self.btn9.setText(_translate("MainWindow", "9"))
         self.btn_exp.setText(_translate("MainWindow", "x^n"))
         self.btn_plus.setText(_translate("MainWindow", "+"))

@@ -5,3 +5,5 @@ calc.py /usr/bin
 ui_calculator.py /usr/bin
 matlib.py /usr/bin
 calculator.py /usr/bin
+help_ui.py /usr/bin
+backspace.py /usr/bin

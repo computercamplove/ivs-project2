@@ -12,8 +12,8 @@ from PyQt5.QtWidgets import QMessageBox
 class Ui_Calculator(object):
     def about_pressed(self):
         about = QMessageBox()
-        about.setWindowTitle("About CalcIVS App")
-        about.setText('CalcIVS App\n\nVersion 1.0.0.\n'
+        about.setWindowTitle("About Calcutron")
+        about.setText('Calcutron\n\nVersion 1.0.0.\n'
                       'Calculator performs basic calculations such as addition, subtraction, multiplication, division'
                       'and scientific operations such as logarithmic, square root, factorial, and exponentiation '
                       'functions.\n\n '
@@ -303,7 +303,7 @@ class Ui_Calculator(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("Calculator IVS", "Calculator IVS"))
+        MainWindow.setWindowTitle(_translate("Calcutron", "Calcutron"))
         self.btn_dot.setText(_translate("MainWindow", "."))
         self.btn_div.setText(_translate("MainWindow", "/"))
         self.btn3.setText(_translate("MainWindow", "3"))

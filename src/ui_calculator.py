@@ -13,11 +13,10 @@ class Ui_Calculator(object):
     def about_pressed(self):
         self.about = QMessageBox()
         self.about.setWindowTitle("About Calcutron")
-        self.about.setText('Calcutron\n\nVersion 1.0.0.\n'
+        self.about.setText('Calcutron\n\nVersion 1.0\n'
                       'Calculator performs basic calculations such as addition, subtraction, multiplication, division'
                       'and scientific operations such as logarithmic, square root, factorial, and exponentiation '
-                      'functions.\n\n '
-                      'Copyright © 2021')
+                      'functions.\n\n ')
         self.about.show()
 
     def open_help(self):

@@ -1,9 +1,9 @@
-install/calculator.xpm /usr/share/pixmaps
-install/calc.desktop /usr/share/applications
-install/calc /usr/bin
-calc.py /usr/bin
+install/calcutron.xpm /usr/share/pixmaps
+install/calcutron.desktop /usr/share/applications
+install/calcutron /usr/bin
+calcutron.py /usr/bin
 ui_calculator.py /usr/bin
 matlib.py /usr/bin
 calculator.py /usr/bin
 help_ui.py /usr/bin
-backspace.py /usr/bin
+LICENSE /usr/share/doc/calcutron

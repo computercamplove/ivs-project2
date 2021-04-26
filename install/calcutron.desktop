@@ -1,8 +1,8 @@
 [Desktop Entry]
 Categories=Game;
-Exec=calc
+Exec=calcutron
 GenericName=Simple Game
-Icon=/usr/share/pixmaps/calculator.xpm
-Name=calc
+Icon=/usr/share/pixmaps/calcutron.xpm
+Name=calcutron
 Type=Application
 X-KDE-StartupNotify=false

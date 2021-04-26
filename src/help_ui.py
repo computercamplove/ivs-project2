@@ -9,11 +9,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_HelpCalc(object):
     def setupUi(self, HelpCalc):
         HelpCalc.setObjectName("HelpCalc")
-        HelpCalc.resize(610, 500)
+        HelpCalc.resize(620, 500)
         self.centralwidget = QtWidgets.QWidget(HelpCalc)
         self.centralwidget.setObjectName("centralwidget")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.centralwidget)
-        self.plainTextEdit.setGeometry(QtCore.QRect(0, 0, 610, 501))
+        self.plainTextEdit.setGeometry(QtCore.QRect(0, 0, 620, 500))
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.plainTextEdit.setReadOnly(True)
         HelpCalc.setCentralWidget(self.centralwidget)

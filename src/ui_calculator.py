@@ -11,14 +11,14 @@ from PyQt5.QtWidgets import QMessageBox
 
 class Ui_Calculator(object):
     def about_pressed(self):
-        about = QMessageBox()
-        about.setWindowTitle("About Calcutron")
-        about.setText('Calcutron\n\nVersion 1.0.0.\n'
+        self.about = QMessageBox()
+        self.about.setWindowTitle("About Calcutron")
+        self.about.setText('Calcutron\n\nVersion 1.0.0.\n'
                       'Calculator performs basic calculations such as addition, subtraction, multiplication, division'
                       'and scientific operations such as logarithmic, square root, factorial, and exponentiation '
                       'functions.\n\n '
                       'Copyright © 2021')
-        about.exec_()
+        self.about.show()
 
     def open_help(self):
         self.window = QtWidgets.QMainWindow()
@@ -188,11 +188,8 @@ class Ui_Calculator(object):
         self.btn_delete.setMinimumSize(QtCore.QSize(61, 61))
         self.btn_delete.setMaximumSize(QtCore.QSize(61, 61))
         self.btn_delete.setStyleSheet("background-color: rgb(205, 97, 85);"
-                                        "outline: 0;")
-        self.btn_delete.setText("")
-        self.btn_delete.setIcon(QIcon('backspace.png'))
-        self.btn_delete.setIconSize(QtCore.QSize(20, 20))
-
+                                        "outline: 0;"
+                                      "color: rgb(229, 228, 226);")
         self.btn_delete.setObjectName("btn_delete")
         self.gridLayout.addWidget(self.btn_delete, 0, 1, 1, 1)
 
@@ -285,7 +282,8 @@ class Ui_Calculator(object):
         self.btn_about.setMinimumSize(QtCore.QSize(50, 20))
         self.btn_about.setMaximumSize(QtCore.QSize(50, 20))
         self.btn_about.setStyleSheet("color: rgb(247, 220, 111);\n"
-                                     "font: 10px")
+                                     "font: 10px;"
+                                     "outline: 0;")
         self.btn_about.setObjectName("About")
 
         self.btn_help = QtWidgets.QPushButton(self.centralwidget)
@@ -293,8 +291,12 @@ class Ui_Calculator(object):
         self.btn_help.setGeometry(50, 0, 0, 0)
         self.btn_help.setMaximumSize(QtCore.QSize(50, 20))
         self.btn_help.setStyleSheet("color: rgb(247, 220, 111);\n"
-                                     "font: 10px")
+                                     "font: 10px;"
+                                    "outline: 0;")
         self.btn_help.setObjectName("Help")
+
+
+
 
         MainWindow.setCentralWidget(self.centralwidget)
 
@@ -331,3 +333,4 @@ class Ui_Calculator(object):
         self.display.setText(_translate("MainWindow", ""))
         self.btn_about.setText(_translate("MainWindow", "About"))
         self.btn_help.setText(_translate("MainWindow", "Help"))
+        self.btn_delete.setText(_translate("MainWindow", "DEL"))

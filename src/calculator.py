@@ -271,7 +271,7 @@ class CalculatorWindow(QtWidgets.QMainWindow, Ui_Calculator):
         elif not self.lcd_string(lcd_str):
             #  display already contain 45 characters and returns previous input
             lcd_result = lcd_str
-        elif lcd_str[-1] in "0123456789":
+        elif len(lcd_str) != 0 and lcd_str[-1] in "0123456789":
             lcd_result = lcd_str + '*('
         else:
             lcd_result = lcd_str + '('

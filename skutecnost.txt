@@ -1,1 +1,3 @@
+ROZDÍLY MEZI SKUTEČNOSTÍ A PLÁNEM
 
+Pomocné funkce pro matematickou knihovnu, které měla zadaná Pavlína Auerová (xauero00) dobrovolné rozšíření základních funkcí. Z důvodu velké náročnosti projektů v ostatních předmětech se této funkcionality ujala Abikenova Zhamilya (xabike00), která měla méně projektů do jiných předmětů.

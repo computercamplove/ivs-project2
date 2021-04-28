@@ -1,5 +1,0 @@
-#!/bin/bash
-# -*- coding: utf-8 -*-
-
-CALC_HOME=`dirname "$0"`
-exec python3 "${CALC_HOME}/calcutron.py"

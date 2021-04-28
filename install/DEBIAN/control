@@ -1,6 +1,13 @@
-Package: test-calculator
-Version: 1.0
-Maintainer: Team
-Architecture: all
-Description: Calculator done
-Depends: python3-pip
+Source: calcutron
+Section: Games
+Priority: extra
+Maintainer: Team-IVS21
+Build-Depends: debhelper-compat (= 12), python3-pyqt5
+Standards-Version: 4.4.1
+Homepage: https://github.com/computercamplove/ivs-project2
+
+Package: calcutron
+Architecture: any
+Depends: ${shlibs:Depends}, python3-pyqt5
+Description: Calcutron application
+ Calculator with basic functions and operations.

@@ -1,8 +1,0 @@
-[Desktop Entry]
-Categories=Game;
-Exec=calcutron
-GenericName=Simple Game
-Icon=/usr/share/pixmaps/calcutron.xpm
-Name=calcutron
-Type=Application
-X-KDE-StartupNotify=false

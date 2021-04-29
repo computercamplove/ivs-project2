@@ -4,14 +4,14 @@ PYTHON = python3
 .PHONY: all start pack clean test doc run profile
 
 #prelozi projekt i s profilingem
-all: start run
+all: start run profile
 
 start:
 	pip3 install -r requirements.txt
 	pip3 freeze
 
 #zabali projekt
-pack:
+pack: doc
 	mkdir -p ../../xabike00_xdrlam00_xauero00/install
 	mkdir -p ../../xabike00_xdrlam00_xauero00/repo
 	cp -a ../doc ../../xabike00_xdrlam00_xauero00

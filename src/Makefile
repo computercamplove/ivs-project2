@@ -16,7 +16,7 @@ pack: doc
 	mkdir -p ../../xabike00_xdrlam00_xauero00/repo
 	cp -a ../doc ../../xabike00_xdrlam00_xauero00
 	cp -a calcutron_1.0_amd64.deb ../../xabike00_xdrlam00_xauero00/install
-	cp -a ../../calc/. ../../xabike00_xdrlam00_xauero00/repo
+	cp -a ../../ivs-project2/. ../../xabike00_xdrlam00_xauero00/repo
 	rm -rf ../../xabike00_xdrlam00_xauero00/repo/doc
 	rm -rf ../../xabike00_xdrlam00_xauero00/repo/src/calcutron_1.0_amd64.deb
 	cd ../../. && zip -r xabike00_xdrlam00_xauero00.zip xabike00_xdrlam00_xauero00

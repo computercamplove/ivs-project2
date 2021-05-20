@@ -1,6 +1,7 @@
+![Screenshot](screenshot.png)
+
 Prostředí
 ---------
-![Screenshot](screenshot.png)
 
 Ubuntu 64bit
 
